@@ -13,18 +13,19 @@ namespace Projeto_Psi.Controllers
     public class FabricantesController : Controller
     {
         private EFContext context = new EFContext();
-        // GET: Fabricantes
+        
+        // GET: Index Fabricantes
         public ActionResult Index()
         {
             return View(context.Fabricantes.OrderBy(c => c.Nome));
         }
 
-        // GET: Create
+        // GET: Create Fabricantes
         public ActionResult Create()
         {
             return View();
         }
-        // POST: Create
+        // POST: Create Fabricantes
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Fabricante fabricante)
@@ -34,7 +35,7 @@ namespace Projeto_Psi.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fabricantes/Edit/5
+        // GET: Edit Fabricantes
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -49,7 +50,7 @@ namespace Projeto_Psi.Controllers
             return View(fabricante);
         }
 
-        // POST: Fabricantes/Edit/5
+        // POST: Edit Fabricantes
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Fabricante fabricante)
@@ -63,7 +64,7 @@ namespace Projeto_Psi.Controllers
             return View(fabricante);
         }
 
-        // GET: Fabricantes/Details/5
+        // GET: Details Fabricantes
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -78,7 +79,7 @@ namespace Projeto_Psi.Controllers
             return View(fabricante);
         }
 
-        // GET: Fabricantes/Delete/5
+        // GET: Delete Fabricantes
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -93,7 +94,7 @@ namespace Projeto_Psi.Controllers
             return View(fabricante);
         }
 
-        // POST: Fabricantes/Delete/5
+        // POST: Delete Fabricantes
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
@@ -101,6 +102,7 @@ namespace Projeto_Psi.Controllers
             Fabricante fabricante = context.Fabricantes.Find(id);
             context.Fabricantes.Remove(fabricante);
             context.SaveChanges();
+            TempData["Message"] = "Fabricante " + fabricante.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
 
