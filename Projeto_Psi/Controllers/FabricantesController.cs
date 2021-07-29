@@ -64,14 +64,14 @@ namespace Projeto_Psi.Controllers
             return View(fabricante);
         }
 
-        // GET: Details Fabricantes
+        // GET: Fabricantes/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fabricante fabricante = context.Fabricantes.Find(id);
+            Fabricante fabricante = context.Fabricantes.Where(f => f.FabricanteId == id).Include("Produtos.Categoria").First();
             if (fabricante == null)
             {
                 return HttpNotFound();
