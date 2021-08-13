@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using Projeto_Psi.Models;
+using Modelo.Cadastros;
+using Modelo.Tabelas;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace Projeto_Psi.Context
+namespace Persistencia.Contexts
 {
     public class EFContext : DbContext
     {
@@ -15,5 +17,11 @@ namespace Projeto_Psi.Context
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Fabricante> Fabricantes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }

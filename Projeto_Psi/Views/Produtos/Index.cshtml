@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Projeto_Psi.Models.Produto>
+﻿@model IEnumerable<Modelo.Cadastros.Produto>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de PRODUTOS";
@@ -61,14 +61,14 @@
     <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")"
           rel="stylesheet">
 }
-@section ScriptPage {
+@section ScriptPage{
     <script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('li').removeClass("active");
             $('#liProdutos').addClass("active");
-            $('.table').dataTable({
+            $('.table').DataTable({
                 "order": [[1, "asc"]]
             });
         });
