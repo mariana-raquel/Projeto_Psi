@@ -316,8 +316,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{ea7ddfbe-d798-4e45-a239-dbeea182f827}</Project>
+      <Project>{6bef7298-0077-47ae-9a4e-86e4452a42f5}</Project>
       <Name>Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{ba8b4463-0f21-463c-8ef8-dd588ee616a6}</Project>
+      <Name>Persistencia</Name>
     </ProjectReference>
     <ProjectReference Include="..\Serviço\Serviço.csproj">
       <Project>{7c7b2bba-8aa7-47f7-91fb-8552f82eb355}</Project>

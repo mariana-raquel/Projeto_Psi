@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{ea7ddfbe-d798-4e45-a239-dbeea182f827}</Project>
+      <Project>{6bef7298-0077-47ae-9a4e-86e4452a42f5}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistencia\Persistencia.csproj">
