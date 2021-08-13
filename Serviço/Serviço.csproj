@@ -47,7 +47,7 @@
     <Compile Include="Tabelas\CategoriaServico.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Modelo.csproj">
+    <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{ea7ddfbe-d798-4e45-a239-dbeea182f827}</Project>
       <Name>Modelo</Name>
     </ProjectReference>

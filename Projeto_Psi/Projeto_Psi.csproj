@@ -315,10 +315,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Modelo.csproj">
-      <Project>{ea7ddfbe-d798-4e45-a239-dbeea182f827}</Project>
-      <Name>Modelo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Serviço\Serviço.csproj">
       <Project>{7c7b2bba-8aa7-47f7-91fb-8552f82eb355}</Project>
       <Name>Serviço</Name>
