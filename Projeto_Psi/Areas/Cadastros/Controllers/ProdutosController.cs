@@ -9,7 +9,7 @@ using Modelo.Cadastros;
 using Servico.Cadastros;
 using Servico.Tabelas;
 
-namespace Projeto_Psi.Controllers
+namespace Projeto_Psi.Areas.Cadastros.Controllers
 {
     public class ProdutosController : Controller
     {
@@ -60,7 +60,7 @@ namespace Projeto_Psi.Controllers
                     produtoServico.GravarProduto(produto);
                     return RedirectToAction("Index");
                 }
-                PopularViewBag(produto);
+                PopularViewBag();
                 return View(produto);
             }
             catch

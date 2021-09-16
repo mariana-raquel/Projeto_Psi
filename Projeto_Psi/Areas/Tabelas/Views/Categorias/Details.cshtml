@@ -1,0 +1,26 @@
+﻿@model Modelo.Tabelas.Categoria
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Visualizando detalhes de uma CATEGORIA";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Visualizando detalhes de uma CATEGORIA
+    </div>
+    <div class="panel-body">
+        @Html.Partial("~/Areas/Tabelas/Views/Categorias/_PartialDetailsContentPanel.cshtml", Model)
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.CategoriaId }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null, new { @class = "btn btn-warning" })
+    </div>
+</div>
+@section ScriptPage{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liCategorias').addClass("active");
+        });
+    </script>
+}

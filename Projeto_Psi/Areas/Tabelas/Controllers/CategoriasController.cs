@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Modelo.Tabelas;
 using Servico.Tabelas;
 
-namespace Projeto_Psi.Controllers
+namespace Projeto_Psi.Areas.Tabelas.Controllers
 {
     public class CategoriasController : Controller
     {

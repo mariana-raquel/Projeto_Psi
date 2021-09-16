@@ -2,21 +2,20 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Registrando uma NOVA CATEGORIA";
-}
+    ViewBag.Title = "Editar CATEGORIA";}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Registrando uma NOVA CATEGORIA
+            Editando dados de uma CATEGORIA
         </div>
         <div class="panel-body">
             @Html.Partial("~/Areas/Tabelas/Views/Categorias/_PartialEditContentPanel.cshtml", Model)
         </div>
         <div class="panel-footer panel-info">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Adicionar Categoria" class="btn btn-danger" />
+                <input type="submit" value="Salvar alterações" class="btn btn-danger" />
                 @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null,
                 new { @class = "btn btn-warning" })
             </div>

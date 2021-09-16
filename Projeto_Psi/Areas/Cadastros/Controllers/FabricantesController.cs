@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Modelo.Cadastros;
 using Servico.Cadastros;
 
-namespace Projeto_PSI.Controllers
+namespace Projeto_Psi.Areas.Cadastros.Controllers
 {
     public class FabricantesController : Controller
     {
@@ -84,6 +84,7 @@ namespace Projeto_PSI.Controllers
         {
             return ObterVisaoFabricantePorId(id);
         }
+
         // GET: Delete
         public ActionResult Delete(long? id)
         {
