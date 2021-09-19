@@ -34,8 +34,7 @@
                     <tr>
                         <td>@usuario.UserName</td>
                         <td>
-                            <input type="checkbox" name="IdsParaAdicionar"
-                                   value="@usuario.Id">
+                            <input type="checkbox" name="IdsParaAdicionar" value="@usuario.Id">
                         </td>
                     </tr>
                 }
@@ -64,8 +63,7 @@
                     <tr>
                         <td>@usuario.UserName</td>
                         <td>
-                            <input type="checkbox" name="IdsParaRemover"
-                                   value="@usuario.Id">
+                            <input type="checkbox" name="IdsParaRemover" value="@usuario.Id">
                         </td>
                     </tr>
                 }
@@ -76,4 +74,17 @@
         Gravar alterações
     </button>
     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btndefault" })
+}
+@section styles{
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">
+}
+@section ScriptPage{
+    <script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liPapeis').addClass("active");
+        });
+    </script>
 }

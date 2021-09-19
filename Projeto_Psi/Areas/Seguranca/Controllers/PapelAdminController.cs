@@ -33,18 +33,18 @@ using System.Web.Mvc;
             {
                 get
                 {
-                    return HttpContext.GetOwinContext().
-                    GetUserManager<GerenciadorUsuario>();
+                    return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
                 }
             }
 
         // GET: Seguranca/PapelAdmin
-        //[Authorize(Roles = "Administradores")]
+        [Authorize(Roles = "Administradores")]
         public ActionResult Index()
             {
                 return View(RoleManager.Roles);
             }
 
+        [Authorize(Roles = "Administradores")]
         public ActionResult Create()
         {
             return View();
@@ -68,13 +68,13 @@ using System.Web.Mvc;
             return View(nome);
         }
 
+        [Authorize(Roles = "Administradores")]
         public ActionResult Edit(string id)
         {
             Papel papel = RoleManager.FindById(id);
             string[] memberIDs = papel.Users.Select(x => x.UserId).ToArray();
             // Carrega usuários associados e usuários não associados
-            IEnumerable<Usuario> membros = UserManager.Users.Where
-            (x => memberIDs.Any(y => y == x.Id));
+            IEnumerable<Usuario> membros = UserManager.Users.Where(x => memberIDs.Any(y => y == x.Id));
             IEnumerable<Usuario> naoMembros = UserManager.Users.Except(membros);
             // Chama a visão
             return View(new PapelEditModel
@@ -91,8 +91,7 @@ using System.Web.Mvc;
             IdentityResult result;
             if (ModelState.IsValid)
             {
-                foreach (string userId in model.IdsParaAdicionar ?? new
-                string[] { })
+                foreach (string userId in model.IdsParaAdicionar ?? new string[] { })
                 {
                     result = UserManager.AddToRole(userId, model.NomePapel);
                     if (!result.Succeeded)
@@ -113,8 +112,41 @@ using System.Web.Mvc;
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
+        [Authorize(Roles = "Administradores")]
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           Papel papel = RoleManager.FindById(id);
+            if (papel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(papel);
+        }
 
-
-
+        [HttpPost]
+        public ActionResult Delete(Papel papel)
+        {
+            Papel user = RoleManager.FindById(papel.Id);
+            if (user != null)
+            {
+                IdentityResult result = RoleManager.Delete(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
     }
  }

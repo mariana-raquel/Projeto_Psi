@@ -77,11 +77,13 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
             return View(produtoServico.ObterProdutosClassificadosPorNome());
         }
 
+
         // GET: Produtos/Details/5
         public ActionResult Details(long? id)
         {
             return ObterVisaoProdutoPorId(id);
         }
+
 
         // GET: Produtos/Create
         public ActionResult Create()

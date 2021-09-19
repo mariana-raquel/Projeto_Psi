@@ -47,7 +47,6 @@ namespace Projeto_Psi.Areas.Tabelas.Controllers
         }
 
 
-
         // GET: Fabricantes
         public ActionResult Index()
         {
@@ -87,6 +86,7 @@ namespace Projeto_Psi.Areas.Tabelas.Controllers
         {
             return ObterVisaoCategoriaPorId(id);
         }
+
         // GET: Delete
         public ActionResult Delete(long? id)
         {

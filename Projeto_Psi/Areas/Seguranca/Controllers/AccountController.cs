@@ -26,11 +26,9 @@ using System.Web.Mvc;
         {
             get
             {
-                return
-          HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
             }
         }
-
 
         // Metodos
         public ActionResult Login(string returnUrl)
@@ -51,23 +49,23 @@ using System.Web.Mvc;
                 }
                 else
                 {
-                    ClaimsIdentity ident = UserManager.CreateIdentity(user,
-                    DefaultAuthenticationTypes.ApplicationCookie);
+                    ClaimsIdentity ident = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     AuthManager.SignOut();
                     AuthManager.SignIn(new AuthenticationProperties
                     { IsPersistent = false }, ident);
                     if (returnUrl == null)
-                        returnUrl = "/Home";
+                        returnUrl = "/Account";
                     return Redirect(returnUrl);
                 }
             }
             return View(details);
         }
 
+      
         public ActionResult Logout()
         {
             AuthManager.SignOut();
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("Login", "Account", new { area = "Seguranca" });
         }
     }
 }

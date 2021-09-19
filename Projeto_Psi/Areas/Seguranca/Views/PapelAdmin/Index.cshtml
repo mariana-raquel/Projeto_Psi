@@ -37,18 +37,13 @@
                         else
                         {
                             <p>
-                                @string.Join(", ", role.Users.Select (x => Html.GetUserName(x.UserId)))
-                            </p>                
+                                @string.Join(", ", role.Users.Select(x => Html.GetUserName(x.UserId)))
+                            </p>
                         }
                     </td>
                     <td>
-                        @using (Html.BeginForm("Delete", "PapelAdmin", new { id = role.Id }))
-                        {
-                            @Html.ActionLink("Alterar", "Edit", new { id = role.Id }, new { @class = "btn btn-primary btn-xs" })
-                            <button class="btn btn-danger btn-xs" type="submit">
-                                Delete
-                            </button>
-                        }
+                        @Html.ActionLink("Editar", "Edit", new { id = role.Id }, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Excluir", "Delete", new { id = role.Id }, new { @class = "btn btn-danger btn-xs" })
                     </td>
                 </tr>
             }
@@ -56,3 +51,16 @@
     </table>
 </div>
 @Html.ActionLink("Criar um novo papel", "Create", null, new { @class = "btn btn-primary" })
+@section styles{
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">
+}
+@section ScriptPage{
+    <script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liPapeis').addClass("active");
+        });
+    </script>
+}

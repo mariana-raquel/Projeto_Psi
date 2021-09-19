@@ -30,16 +30,15 @@ namespace Projeto_Psi.Areas.Seguranca.Controllers
             }
         }
 
-
-
-
         // GET: Seguranca/Admin
         [Authorize]
+        [Authorize(Roles = "Administradores")]
         public ActionResult Index()
         {
             return View(GerenciadorUsuario.Users);
         }
 
+        [Authorize(Roles = "Administradores")]
         public ActionResult Create()
         { 
             return View(); 
@@ -68,6 +67,7 @@ namespace Projeto_Psi.Areas.Seguranca.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Administradores")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -95,8 +95,7 @@ namespace Projeto_Psi.Areas.Seguranca.Controllers
                 Usuario usuario = GerenciadorUsuario.FindById(uvm.Id);
                 usuario.UserName = uvm.Nome;
                 usuario.Email = uvm.Email;
-                usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.
-                HashPassword(uvm.Senha);
+                usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.HashPassword(uvm.Senha);
                 IdentityResult result = GerenciadorUsuario.Update(usuario);
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
@@ -105,12 +104,13 @@ namespace Projeto_Psi.Areas.Seguranca.Controllers
             }
             return View(uvm);
         }
+
+        [Authorize(Roles = "Administradores")]
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Usuario usuario = GerenciadorUsuario.FindById(id);
             if (usuario == null)
@@ -142,6 +142,7 @@ namespace Projeto_Psi.Areas.Seguranca.Controllers
             }
         }
 
+        [Authorize(Roles = "Administradores")]
         public ActionResult Details(string id)
         {
             if (id == null)
