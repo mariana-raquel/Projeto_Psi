@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar PRODUTO";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Produtos", FormMethod.Post, new{enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
@@ -12,23 +12,73 @@
         </div>
         <div class="panel-body">
             @Html.Partial("~/Areas/Cadastros/Views/Produtos/_PartialEditContentPanel.cshtml", Model)
-        </div>
-        <div class="panel-footer panel-info">
-            <div class="col-md-offset-3 col-md-9">
-                <input type="submit" value="Salvar alterações" class="btn btn-danger" />
-                @Html.ActionLink("Retornar para a listagem de PRODUTOS", "Index", null,
-                new { @class = "btn btn-warning" })
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="chkLancamento" value="Sim"> Tornar produto como lançamento
+                </label>
             </div>
-            <br />
-            <br />
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="chkPromocao" value="Sim"> Tornar produto promocional
+                </label>
+            </div>
+            @if (Model.Promocao == true)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PercentualDesconto, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PercentualDesconto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PercentualDesconto, " ", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            @Html.HiddenFor(model => model.ProdutoId)
+            @Html.HiddenFor(model => model.LogotipoMimeType)
+            @Html.HiddenFor(model => model.Logotipo)
+            <div class="col-md-offset-7 col-md-5">
+                <div class="form-group">
+                    @Html.TextBox("logotipo", "", new { type = "file" }) <br />
+                </div>
+                <div class="form-group">
+                    @if (Model.Logotipo == null)
+                    {
+                        <div class="form-control-static">
+                            Nenhuma imagem adicionada
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="panel-body">
+                            <img class="img-thumbnail" src="@Url.Action("GetLogotipo", "Produtos", new { id = Model.ProdutoId })" style="display:block;margin-left:auto; margin-right:auto;" />
+                        </div>
+                        <div class="panel-footer">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="chkRemoverImagem" value="Sim">Remover imagem
+                                </label>
+                            </div>
+                            @Html.ActionLink("Baixar o arquivo : " + Model.NomeArquivo, "DownloadArquivo", "Produtos", new { area = "Cadastros", id = Model.ProdutoId }, null)
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
-    </div>
-}
-@section ScriptPage {
-    <script type="text/javascript">
-        $(document).ready(function () {
-        $('li').removeClass("active");
-        $('#liProdutos').addClass("active");
-        });
-    </script>
-}
+                <div class="panel-footer panel-info">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" value="Salvar alterações" class="btn btn-danger" />
+                        @Html.ActionLink("Retornar para a listagem de PRODUTOS", "Index", null,
+                        new { @class = "btn btn-warning" })
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            }
+            @section ScriptPage {
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('li').removeClass("active");
+                        $('#liProdutos').addClass("active");
+                    });
+                </script>
+            }
