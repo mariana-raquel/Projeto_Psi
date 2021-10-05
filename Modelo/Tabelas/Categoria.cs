@@ -11,7 +11,7 @@ namespace Modelo.Tabelas
     public class Categoria
     {
         [DisplayName("Id")]
-        public long CategoriaId { get; set; }
+        public long? CategoriaId { get; set; }
 
         [StringLength(100, ErrorMessage = "O nome do categoria precisa ter no mínimo 2 caracteres", MinimumLength = 2)]
         [Required(ErrorMessage = "Informe o nome da categoria")]

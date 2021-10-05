@@ -2,7 +2,8 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Editar FABRICANTE";}
+    ViewBag.Title = "Editar FABRICANTE";
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,8 +17,7 @@
         <div class="panel-footer panel-info">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Salvar alterações" class="btn btn-danger" />
-                @Html.ActionLink("Retornar para a listagem de FABRICANTES", "Index", null,
-                new { @class = "btn btn-warning" })
+                @Html.ActionLink("Retornar para a listagem de FABRICANTES", "Index", null, new { @class = "btn btn-warning" })
             </div>
             <br />
             <br />

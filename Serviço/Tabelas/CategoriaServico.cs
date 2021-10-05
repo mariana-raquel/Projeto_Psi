@@ -26,9 +26,7 @@ namespace Servico.Tabelas
         }
         public Categoria EliminarCategoriaPorId(long id)
         {
-            Categoria categoria = categoriaDAL.ObterCategoriaPorId(id);
-            categoriaDAL.EliminarCategoriaPorId(id);
-            return categoria;
+            return categoriaDAL.EliminarCategoriaPorId(id);
         }
     }
 }

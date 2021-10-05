@@ -22,17 +22,16 @@ namespace Modelo.Cadastros
         [Required(ErrorMessage = "Informe a data de cadastro do produto")]
         public DateTime? DataCadastro { get; set; }
 
-        [DisplayName("Preço")]
+        
+        [DisplayName("Preço (R$)")]
+        [Required(ErrorMessage = "Informe o preço do produto")]
         public double Preco { get; set; }
 
         [DisplayName("Lançamento")]
         public bool Lancamento { get; set; }
 
-        [DisplayName("Promoção")]
-        public bool Promocao { get; set; }
-
         [DisplayName("Percentual de Desconto (%)")]
-        public long PercentualDesconto { get; set; }
+        public long? PercentualDesconto { get; set; }
 
         public string LogotipoMimeType { get; set; }
 
@@ -43,9 +42,11 @@ namespace Modelo.Cadastros
         public long TamanhoArquivo { get; set; }
 
         [DisplayName("Categoria")]
+        [Required(ErrorMessage = "Informe a categoria do produto")]
         public long? CategoriaId { get; set; }
 
         [DisplayName("Fabricante")]
+        [Required(ErrorMessage = "Informe o fabricante do produto")]
         public long? FabricanteId { get; set; }
 
         public Categoria Categoria { get; set; }

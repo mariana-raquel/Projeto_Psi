@@ -274,6 +274,13 @@
     <Content Include="Areas\Seguranca\Views\PapelAdmin\Edit.cshtml" />
     <Content Include="Areas\Seguranca\Views\PapelAdmin\Delete.cshtml" />
     <Content Include="Areas\Seguranca\Views\PapelAdmin\_PartialDetailsContentPanel.cshtml" />
+    <Content Include="Areas\Home\Views\web.config" />
+    <Content Include="Areas\Home\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Home\Views\Home\_PartialCategorias.cshtml" />
+    <Content Include="Areas\Home\Views\Home\_PartialProdutosPromocao.cshtml" />
+    <Content Include="Areas\Home\Views\Home\_PartialProdutosLancamento.cshtml" />
+    <Content Include="Areas\Home\Views\Home\DetailsCategorias.cshtml" />
+    <Content Include="Areas\Home\Views\Home\DetailsProdutos.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -339,6 +346,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Cadastros\CadastrosAreaRegistration.cs" />
+    <Compile Include="Areas\Home\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
+    <Compile Include="Areas\Home\Models\Home.cs" />
     <Compile Include="Areas\Seguranca\Controllers\AccountController.cs" />
     <Compile Include="Areas\Seguranca\Controllers\AdminController.cs" />
     <Compile Include="Areas\Seguranca\Controllers\PapelAdminController.cs" />
@@ -364,7 +374,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -376,6 +385,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Cadastros\Data\" />
     <Folder Include="Areas\Cadastros\Views\Shared\" />
+    <Folder Include="Areas\Home\Data\" />
+    <Folder Include="Areas\Home\Views\Shared\" />
     <Folder Include="Areas\Seguranca\Data\" />
     <Folder Include="Areas\Seguranca\Views\Shared\" />
     <Folder Include="Areas\Tabelas\Data\" />

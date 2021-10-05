@@ -23,7 +23,7 @@ namespace Persistencia.DAL.Tabelas
         }
         public void GravarCategoria(Categoria categoria)
         {
-            if (categoria.CategoriaId == 0)
+            if (categoria.CategoriaId == null)
             {
                 context.Categorias.Add(categoria);
             }

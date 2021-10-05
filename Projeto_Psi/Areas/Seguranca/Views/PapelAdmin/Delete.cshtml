@@ -38,7 +38,7 @@
                         Você está certo que deseja prosseguir?
                     </strong>
                 </p>
-                @using (Html.BeginForm("Delete", "Fabricantes", FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                @using (Html.BeginForm("Delete", "PapelAdmin", FormMethod.Post, new { @id = "delete-form", role = "form" }))
                 {
                     @Html.HiddenFor(m => m.Papel.Id)
                     @Html.AntiForgeryToken()
@@ -55,7 +55,6 @@
         </div>
     </div>
 </div>
-}
 @section styles{
     <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">
 }

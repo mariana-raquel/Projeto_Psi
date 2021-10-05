@@ -124,7 +124,12 @@ using System.Web.Mvc;
             {
                 return HttpNotFound();
             }
-            return View(papel);
+            return View(new PapelEditModel
+            {
+                Papel = papel,
+                Membros = null,
+                NaoMembros = null
+            });
         }
 
         [HttpPost]

@@ -64,7 +64,7 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
             return null;
         }
 
-        private ActionResult GravarProduto(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null, string chkPromocao = null)
+        private ActionResult GravarProduto(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null)
         {
             try
             {
@@ -73,10 +73,6 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
                     if (chkLancamento != null)
                     {
                         produto.Lancamento = true;
-                    }
-                    if (chkPromocao != null)
-                    {
-                        produto.Promocao = true;
                     }
                     if (chkRemoverImagem != null)
                     {
@@ -135,9 +131,10 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
 
         // POST: Produtos/Create
         [HttpPost]
-        public ActionResult Create(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null, string chkPromocao = null)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null)
         {
-            return GravarProduto(produto, logotipo, chkRemoverImagem, chkLancamento, chkPromocao);
+            return GravarProduto(produto, logotipo, chkRemoverImagem, chkLancamento);
         }
 
         // GET: Produtos/Edit/5
@@ -148,9 +145,10 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null, string chkPromocao = null)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null, string chkLancamento = null)
         {
-            return GravarProduto(produto, logotipo, chkRemoverImagem, chkLancamento, chkPromocao);
+            return GravarProduto(produto, logotipo, chkRemoverImagem, chkLancamento);
         }
 
         // GET: Produtos/Delete/5
@@ -161,6 +159,7 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
 
         // POST: Produtos/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

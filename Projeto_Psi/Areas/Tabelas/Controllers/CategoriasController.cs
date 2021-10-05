@@ -11,16 +11,14 @@ using Servico.Tabelas;
 namespace Projeto_Psi.Areas.Tabelas.Controllers
 {
     public class CategoriasController : Controller
-    {
-
+    { 
         private CategoriaServico categoriaServico = new CategoriaServico();
 
         private ActionResult ObterVisaoCategoriaPorId(long? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Categoria categoria = categoriaServico.ObterCategoriaPorId((long)id);
             if (categoria == null)

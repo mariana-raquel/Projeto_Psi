@@ -10,7 +10,7 @@ namespace Modelo.Cadastros
     public class Fabricante
     {
         [DisplayName("Id")]
-        public long FabricanteId { get; set; }
+        public long? FabricanteId { get; set; }
 
         [StringLength(100, ErrorMessage = "O nome do fabricante precisa ter no mínimo 2 caracteres", MinimumLength = 2)]
         [Required(ErrorMessage = "Informe o nome do fabricante")]

@@ -1,28 +1,173 @@
-﻿@model IEnumerable<Modelo.Cadastros.Produto>
+﻿using Modelo.Cadastros.Produto
+@model IEnumerable<Modelo.Cadastros.Produto>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (@TempData["Message"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["Message"]
-    </div>
-}
 <div class="panel panel-primary">
-     <!--<div class="panel-heading">
-        Relação de PRODUTOS registrados
-    </div>-->
+    <div class="panel-heading">
+        Relação de CATEGORIAS
+    </div>
     <div class="panel-body">
-        @Html.Partial("~/Areas/Tabelas/Views/Categorias/_PartialEditContentPanel.cshtml", Model)
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria.CategoriaId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria.Nome)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Sem categorias
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                   foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Categoria.CategoriaId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                            </td>
+                            <td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "DetailsCategorias", new { id = item.Categoria.CategoriaId })
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+        </table>
     </div>
 </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Relação de PRODUTOS EM LANÇAMENTO
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProdutoId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Sem produtos em lançamento
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        //if (Model.Lancamento == true) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProdutoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                <td>
+                                    @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
+                                </td>
+                            </tr>
+                        //}
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Relação de PRODUTOS PROMOCIONAIS
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProdutoId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Sem produtos promocionais
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        //if (Model.PercentualDesconto != 0) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProdutoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                <td>
+                                    @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
+                                </td>
+                            </tr>
+                        //}
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
 @section styles{
-    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
 @section ScriptPage{
     <script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('li').removeClass("active");
@@ -30,4 +175,3 @@
         });
     </script>
 }
-

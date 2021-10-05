@@ -17,8 +17,7 @@ namespace Projeto_Psi.Areas.Cadastros.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Fabricante fabricante = fabricanteServico.ObterFabricantePorId((long)id);
             if (fabricante == null)
