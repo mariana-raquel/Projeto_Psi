@@ -278,7 +278,7 @@
     <Content Include="Areas\Home\Views\Home\Index.cshtml" />
     <Content Include="Areas\Home\Views\Home\_PartialCategorias.cshtml" />
     <Content Include="Areas\Home\Views\Home\_PartialProdutosPromocao.cshtml" />
-    <Content Include="Areas\Home\Views\Home\_PartialProdutosLancamento.cshtml" />
+    <Content Include="Areas\Home\Views\Home\_PartialProdutos.cshtml" />
     <Content Include="Areas\Home\Views\Home\DetailsCategorias.cshtml" />
     <Content Include="Areas\Home\Views\Home\DetailsProdutos.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

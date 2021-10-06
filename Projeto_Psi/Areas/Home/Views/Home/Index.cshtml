@@ -1,5 +1,4 @@
-﻿using Modelo.Cadastros.Produto
-@model IEnumerable<Modelo.Cadastros.Produto>
+﻿@model IEnumerable<Modelo.Cadastros.Produto>
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +12,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Categoria.CategoriaId)
+                        @Html.DisplayNameFor(model => model.CategoriaId)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Categoria.Nome)
@@ -32,23 +31,22 @@
                 }
                 else
                 {
-                   foreach (var item in Model)
+                    foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Categoria.CategoriaId)
+                                @Html.DisplayFor(modelItem => item.CategoriaId)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Categoria.Nome)
                             </td>
                             <td>
-                            <td>
-                                @Html.ActionLink("Detalhes", "DetailsCategorias", new { id = item.Categoria.CategoriaId })
+                                @Html.ActionLink("Detalhes", "DetailsCategorias", new { id = item.CategoriaId })
                             </td>
                         </tr>
                     }
                 }
-                </tbody>
+            </tbody>
         </table>
     </div>
 </div>
@@ -62,6 +60,9 @@
             <thead>
                 <tr>
                     <th>
+                        Imagem
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.ProdutoId)
                     </th>
                     <th>
@@ -71,34 +72,41 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Count() == 0)
-                {
-                    <tr>
-                        <td colspan="3" class="text-center">
-                            Sem produtos em lançamento
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model)
+                @foreach (var item in Model)
+                 {
+                    if (item.Lancamento == true) 
                     {
-                        //if (Model.Lancamento == true) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProdutoId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                <td>
-                                    @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
-                                </td>
-                            </tr>
-                        //}
+                        <tr>
+                            <td>
+                                @if(item.Logotipo != null) {
+                                    <img class="img-thumbnail" src="@Url.Action("GetLogotipo", "Home", new { id = item.ProdutoId })" style="display:block; margin-right:auto; width:50px;height:50px;" />
+                                 }
+                                 else
+                                 {
+                                    <span> Sem imagem </span>
+                                 }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProdutoId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
+                            </td>
+                        </tr>
                     }
-                }
+                    else 
+                    { 
+                        <tr>
+                            <td></td>
+                            <td align="center"> Sem produtos em lançamento </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                 }
             </tbody>
         </table>
     </div>
@@ -113,6 +121,9 @@
             <thead>
                 <tr>
                     <th>
+                        Imagem
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.ProdutoId)
                     </th>
                     <th>
@@ -122,52 +133,53 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Count() == 0)
+                @foreach (var item in Model)
                 {
-                    <tr>
-                        <td colspan="3" class="text-center">
-                            Sem produtos promocionais
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model)
+                    if (item.PercentualDesconto != 0)
                     {
-                        //if (Model.PercentualDesconto != 0) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ProdutoId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                <td>
-                                    @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
-                                </td>
-                            </tr>
-                        //}
+                        <tr>
+                            <td>
+                                @if (item.Logotipo != null)
+                                {
+                                    <img class="img-thumbnail" src="@Url.Action("GetLogotipo", "Home", new { id = item.ProdutoId })" style="display:block; margin-right:auto; width:50px;height:50px;" />
+                                }
+                                else
+                                {
+                                    <span> Sem imagem </span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProdutoId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "DetailsProdutos", new { id = item.ProdutoId })
+                            </td>
+                        </tr>
                     }
+                    else
+                    {
+                        <tr>
+                            <td></td>
+                            <td align="center"> Sem produtos em promoção </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                 }
-            </tbody>
-        </table>
+            }
+                </tbody>
+            </table>
     </div>
 </div>
 
 @section styles{
-    <link href="@Url.Content("~/Content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
 @section ScriptPage{
-    <script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
-    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.table').dataTable({
-                "order": [[1, "asc"]]
-            });
-        });
-    </script>
+    <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('li').removeClass("active");

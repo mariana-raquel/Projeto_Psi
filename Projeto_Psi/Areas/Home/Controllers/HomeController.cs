@@ -45,6 +45,16 @@ namespace Projeto_Psi.Areas.Home.Controllers
             return View(categoria);
         }
 
+        public FileContentResult GetLogotipo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            if (produto != null)
+            {
+                return File(produto.Logotipo, produto.LogotipoMimeType);
+            }
+            return null;
+        }
+
         // GET: Home/Home
         public ActionResult Index()
         {
